@@ -1,14 +1,16 @@
 package org.rgomez.springboot.calculadora.response;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
 @AllArgsConstructor
-@Getter
-@Setter
+@NoArgsConstructor
 public class ResultResponse {
 
 	private double result;
+
+	
 
 }

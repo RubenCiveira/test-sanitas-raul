@@ -7,8 +7,7 @@ public class StringToEnumConverter implements Converter<String, OperadorBinarioE
 	@Override
 	public OperadorBinarioEnum convert(String source) {
 		return OperadorBinarioEnum.getOperation(source);
+
 	}
-
-
 
 }
