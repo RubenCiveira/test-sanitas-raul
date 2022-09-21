@@ -16,7 +16,6 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
-		<org.mapstruct.version>1.5.2.Final</org.mapstruct.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -39,34 +38,37 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>org.mapstruct</groupId>
-			<artifactId>mapstruct</artifactId>
-			<version>${org.mapstruct.version}</version>
-		</dependency>
+			<groupId>io.corp.calculator</groupId>
+			<artifactId>tracer</artifactId>
+			<version>1.0.0</version>
+		</dependency>	
 
 	</dependencies>
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
+				<artifactId>maven-install-plugin</artifactId>
+
 				<configuration>
-					<source>17</source>
-					<target>17</target>
-					<annotationProcessorPaths>
-						<path>
-							<groupId>org.mapstruct</groupId>
-							<artifactId>mapstruct-processor</artifactId>
-							<version>${org.mapstruct.version}</version>
-						</path>
-						<!-- other annotation processors -->
-					</annotationProcessorPaths>
+					<groupId>io.corp.calculator</groupId>
+					<artifactId>tracer</artifactId>
+					<version>1.0.0</version>
+					<packaging>jar</packaging>
+					<file>${basedir}/lib/tracer-1.0.0.jar</file>
+					<generatePom>true</generatePom>
 				</configuration>
+				<executions>
+					<execution>
+						<id>install-jar-lib</id>
+						<goals>
+							<goal>install-file</goal>
+						</goals>
+						<phase>validate</phase>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

@@ -2,7 +2,7 @@ package org.rgomez.springboot.calculadora.services;
 
 import java.math.BigDecimal;
 
-import org.rgomez.springboot.calculadora.request.Operador;
+import org.rgomez.springboot.calculadora.request.OperadorBinarioEnum;
 import org.rgomez.springboot.calculadora.response.ResultResponse;
 
 public interface OperationService {
@@ -15,6 +15,6 @@ public interface OperationService {
 	 * @param number2
 	 * @return ResultResponse
 	 */
-	ResultResponse calcular(Operador operacion, BigDecimal number1, BigDecimal number2);
+	ResultResponse calcular(OperadorBinarioEnum operacion, BigDecimal number1, BigDecimal number2);
 
 }

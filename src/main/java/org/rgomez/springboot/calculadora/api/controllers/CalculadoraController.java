@@ -2,7 +2,7 @@ package org.rgomez.springboot.calculadora.api.controllers;
 
 import java.math.BigDecimal;
 
-import org.rgomez.springboot.calculadora.request.Operador;
+import org.rgomez.springboot.calculadora.request.OperadorBinarioEnum;
 import org.rgomez.springboot.calculadora.response.ResultResponse;
 import org.rgomez.springboot.calculadora.services.OperationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.corp.calculator.TracerImpl;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.info.Info;
@@ -38,16 +39,23 @@ public class CalculadoraController {
 	@Autowired
 	private OperationService operationService;
 
+	private static final TracerImpl tracer = new TracerImpl();
+
 	@Operation(summary = "Resultado operación", description = "Resultado operación", tags = { "Operations" })
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Consulta correcta"),
 			@ApiResponse(responseCode = "400", description = "Error en la petición"),
 			@ApiResponse(responseCode = "500", description = "Error interno en el servidor") })
 	@GetMapping(path = "/operations", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<Object> precio(@RequestParam(required = true, name = "operator") Operador operacion,
+	public ResponseEntity<Object> precio(
+			@RequestParam(required = true, name = "operator") OperadorBinarioEnum operacion,
 			@RequestParam(required = true, name = "number1") BigDecimal number1,
 			@RequestParam(required = true, name = "number2") BigDecimal number2) {
 
+		tracer.trace(String.format(
+				"INICIO Endpoint /operations. PARAMETROS: RequestParam number1: %s, number2: %s, operator: %s", number1,
+				number2, operacion));
 		ResultResponse result = operationService.calcular(operacion, number1, number2);
+		tracer.trace(String.format("FIN Endpoint /operations.  RESULTADO: %1$,.4f", result.getResult()));
 
 		return ResponseEntity.ok().body(result);
 
