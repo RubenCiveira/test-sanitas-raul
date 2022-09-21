@@ -1,5 +1,7 @@
 package org.rgomez.springboot.calculadora.api.controllers;
 
+import java.math.BigDecimal;
+
 import org.rgomez.springboot.calculadora.request.Operador;
 import org.rgomez.springboot.calculadora.response.ResultResponse;
 import org.rgomez.springboot.calculadora.services.OperationService;
@@ -42,8 +44,8 @@ public class CalculadoraController {
 			@ApiResponse(responseCode = "500", description = "Error interno en el servidor") })
 	@GetMapping(path = "/operations", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Object> precio(@RequestParam(required = true, name = "operator") Operador operacion,
-			@RequestParam(required = true, name = "number1") double number1,
-			@RequestParam(required = true, name = "number2") double number2) {
+			@RequestParam(required = true, name = "number1") BigDecimal number1,
+			@RequestParam(required = true, name = "number2") BigDecimal number2) {
 
 		ResultResponse result = operationService.calcular(operacion, number1, number2);
 

@@ -1,5 +1,12 @@
 package org.rgomez.springboot.calculadora.request;
 
+import org.rgomez.springboot.calculadora.api.exceptions.OperationBadRequestException;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@AllArgsConstructor
+@Getter
 public enum Operador {
 	SUMA("+", "Operación aritmetica para sumar dos números"),
 	RESTA("-", "Operación aritmetica para restar dos números");
@@ -11,24 +18,18 @@ public enum Operador {
 
 	private String descripcion;
 
-	Operador(String operacion, String descripcion) {
-		this.operacion = operacion;
-		this.descripcion = descripcion;
-	}
+	/**
+	 * 
+	 * @param value
+	 * @return operador
+	 */
+	public static Operador getOperation(String value) {
 
-	public String getOperacion() {
-		return operacion;
-	}
-
-	public void setOperacion(String operacion) {
-		this.operacion = operacion;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+		for (Operador operador : operaciones) {
+			if (value.equalsIgnoreCase(operador.name()) || value.equalsIgnoreCase(operador.getOperacion())) {
+				return operador;
+			}
+		}
+		throw new OperationBadRequestException("Operación no soportada: " + value);
 	}
 }
