@@ -1,4 +1,4 @@
-package org.rgomez.springboot.calculadora.response;
+package org.rgomez.springboot.calculator.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

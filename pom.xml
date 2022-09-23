@@ -7,9 +7,9 @@
 		<version>2.7.2</version>
 	</parent>
 	<groupId>org.rgomez.springboot.calculadora</groupId>
-	<artifactId>springboot_calculadora</artifactId>
+	<artifactId>test-calculator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>springboot_calculadora</name>
+	<name>test-calculator</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -33,6 +33,11 @@
 			<version>3.0.0</version>
 		</dependency>
 		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
@@ -41,13 +46,13 @@
 			<groupId>io.corp.calculator</groupId>
 			<artifactId>tracer</artifactId>
 			<version>1.0.0</version>
-		</dependency>	
+		</dependency>
 
 	</dependencies>
 
 	<build>
 		<plugins>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-install-plugin</artifactId>

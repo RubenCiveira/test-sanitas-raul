@@ -1,4 +1,4 @@
-package org.rgomez.springboot.calculadora.api.exceptions;
+package org.rgomez.springboot.calculator.api.exceptions;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

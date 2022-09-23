@@ -1,4 +1,4 @@
-package org.rgomez.springboot.calculadora.config;
+package org.rgomez.springboot.calculator.config;
 
 import java.util.Collections;
 
@@ -20,7 +20,7 @@ public class SpringFoxConfig {
 	@Bean
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
-				.apis(RequestHandlerSelectors.basePackage("org.rgomez.springboot.calculadora.api.controllers"))
+				.apis(RequestHandlerSelectors.basePackage("org.rgomez.springboot.calculator.api.controllers"))
 				.paths(PathSelectors.any()).build().apiInfo(apiInfo());
 	}
 
